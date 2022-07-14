@@ -1,14 +1,19 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './App.css';
+import {Provider} from "react-redux";
+import store from "../redux/store"
+// can be lazy loaded...
 import Layout from "../Layout/Layout";
 import Home from "../Home/Home";
 import Products from "../Products/Products";
 import SingleProduct from "../SingleProduct/SingleProduct";
-import AddProduct from "../AddProduct/AddProduct"; // can be lazy loaded...
+import AddProduct from "../AddProduct/AddProduct";
 
 function App() {
-  return (<Router>
+  return (
+    <Provider store={store}>
+    <Router>
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
@@ -20,7 +25,9 @@ function App() {
           <Route path="recipes/add" element={<>add recipe</>}/>
         </Route>
       </Routes>
-    </Router>);
+    </Router>
+    </Provider>
+      );
 }
 
 export default App;
